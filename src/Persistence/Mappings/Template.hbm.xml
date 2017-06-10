@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="Domain.Entities"
+                   assembly="Domain">
+  <class name="Template">
+    <id name="Id" generator="guid.comb" />
+    <property name="Name" />
+    <property name="Pages" />
+    <property name="Width" />
+    <property name="Heigth" />
+    <many-to-one name="Company" />
+    <set name="Fields" cascade="all" inverse="true">
+      <key column="TemplateId" not-null="true" update="false" />
+      <one-to-many class="Field" />
+    </set>
+  </class>
+</hibernate-mapping>
