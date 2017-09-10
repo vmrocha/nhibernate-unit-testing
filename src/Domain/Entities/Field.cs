@@ -7,6 +7,7 @@
 
         public Field(string name)
         {
+            // ReSharper disable once VirtualMemberCallInConstructor
             Name = name;
         }
 

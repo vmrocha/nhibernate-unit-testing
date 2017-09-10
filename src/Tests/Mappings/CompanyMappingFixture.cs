@@ -10,7 +10,7 @@ namespace Tests.Mappings
         [Test]
         public void CompanyProperties()
         {
-            object entityId = null;
+            object entityId;
 
             using (var session = OpenSession())
             {
@@ -33,16 +33,13 @@ namespace Tests.Mappings
 
             using (var session = OpenSession())
             {
-                using (var transaction = session.BeginTransaction())
-                {
-                    var field = session.Get<Company>(entityId);
+                var field = session.Get<Company>(entityId);
 
-                    Assert.NotNull(field);
-                    Assert.AreEqual("Company Name", field.Name);
-                    Assert.AreEqual("Address Line 1", field.Address.Line1);
-                    Assert.AreEqual("Address Line 2", field.Address.Line2);
-                    Assert.AreEqual("3213", field.Address.PostalCode);
-                }
+                Assert.NotNull(field);
+                Assert.AreEqual("Company Name", field.Name);
+                Assert.AreEqual("Address Line 1", field.Address.Line1);
+                Assert.AreEqual("Address Line 2", field.Address.Line2);
+                Assert.AreEqual("3213", field.Address.PostalCode);
             }
         }
     }

@@ -7,19 +7,25 @@ namespace ConsoleApp
 {
     class Program
     {
+        private static ISessionHelper _sessionHelper;
+
         static void Main(string[] args)
         {
-            object templateId = null;
+            _sessionHelper = new PostgreSqlSessionHelper();
 
-            using (var session = PostgreSQLSessionHelper.OpenSession())
+            object templateId;
+
+            using (var session = _sessionHelper.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
                     var companyId = session.Save(new Company("Company"));
 
-                    var template = new Template();
-                    template.Name = "Template";
-                    template.Company = session.Load<Company>(companyId);
+                    var template = new Template
+                    {
+                        Name = "Template",
+                        Company = session.Load<Company>(companyId)
+                    };
                     template.AddField(new Field("FieldOne"));
                     template.AddField(new Field("FieldTwo"));
 
@@ -29,21 +35,18 @@ namespace ConsoleApp
                 }
             }
 
-            using (var session = PostgreSQLSessionHelper.OpenSession())
+            using (var session = _sessionHelper.OpenSession())
             {
-                using (var transaction = session.BeginTransaction())
-                {
-                    var template = session
-                            .QueryOver<Template>()
-                            .Fetch(x => x.Company).Eager
-                            .Fetch(x => x.Fields).Eager
-                            .Where(x => x.Id == (Guid)templateId)
-                            .SingleOrDefault();
+                var template = session
+                    .QueryOver<Template>()
+                    .Fetch(x => x.Company).Eager
+                    .Fetch(x => x.Fields).Eager
+                    .Where(x => x.Id == (Guid)templateId)
+                    .SingleOrDefault();
 
-                    Console.WriteLine($"Name: {template.Name}");
-                    Console.WriteLine($"Company: {template.Company.Name}");
-                    Console.WriteLine($"Fields: {string.Join(", ", template.Fields.Select(f => f.Name))}");
-                }
+                Console.WriteLine($"Name: {template.Name}");
+                Console.WriteLine($"Company: {template.Company.Name}");
+                Console.WriteLine($"Fields: {string.Join(", ", template.Fields.Select(f => f.Name))}");
             }
         }
     }

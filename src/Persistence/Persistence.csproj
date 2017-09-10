@@ -63,7 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InMemorySessionHelper.cs" />
-    <Compile Include="PostgreSQLSessionHelper.cs" />
+    <Compile Include="ISessionHelper.cs" />
+    <Compile Include="PostgreSqlSessionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

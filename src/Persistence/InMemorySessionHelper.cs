@@ -1,4 +1,5 @@
-﻿using NHibernate;
+﻿using System;
+using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
@@ -7,13 +8,12 @@ using System.Data.SQLite;
 
 namespace Persistence
 {
-    public class InMemorySessionHelper
+    public class InMemorySessionHelper : ISessionHelper, IDisposable
     {
-        private const string CONNECTION_STRING =
-            "Data Source=:memory:;Version=3;New=True;";
+        private const string Connectionstring = "Data Source=:memory:";
 
-        private Configuration _config;
-        private ISessionFactory _sessionFactory;
+        private readonly Configuration _config;
+        private readonly ISessionFactory _sessionFactory;
         private SQLiteConnection _connection;
 
         public InMemorySessionHelper()
@@ -23,12 +23,18 @@ namespace Persistence
                 {
                     db.Dialect<SQLiteDialect>();
                     db.Driver<SQLite20Driver>();
-                    db.ConnectionString = CONNECTION_STRING;
+                    db.ConnectionString = Connectionstring;
+                    db.LogFormattedSql = true;
+                    db.LogSqlInConsole = true;
                 })
-                .SetNamingStrategy(ImprovedNamingStrategy.Instance)
                 .AddAssembly("Persistence");
 
             _sessionFactory = _config.BuildSessionFactory();
+        }
+
+        public void Dispose()
+        {
+            _connection?.Dispose();
         }
 
         public ISession OpenSession()
@@ -40,7 +46,7 @@ namespace Persistence
         {
             if (_connection == null)
             {
-                _connection = new SQLiteConnection(CONNECTION_STRING);
+                _connection = new SQLiteConnection(Connectionstring);
                 _connection.Open();
 
                 SchemaExport se = new SchemaExport(_config);

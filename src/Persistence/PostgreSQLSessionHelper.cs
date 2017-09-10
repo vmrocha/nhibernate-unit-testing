@@ -7,11 +7,11 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace Persistence
 {
-    public class PostgreSQLSessionHelper
+    public class PostgreSqlSessionHelper : ISessionHelper
     {
-        private static readonly ISessionFactory sessionFactory;
+        private readonly ISessionFactory _sessionFactory;
 
-        static PostgreSQLSessionHelper()
+        public PostgreSqlSessionHelper()
         {
             var configuration = new Configuration()
                 .DataBaseIntegration(db =>
@@ -30,12 +30,12 @@ namespace Persistence
             export.Drop(true, true);
             export.Create(true, true);
 
-            sessionFactory = configuration.BuildSessionFactory();
+            _sessionFactory = configuration.BuildSessionFactory();
         }
 
-        public static ISession OpenSession()
+        public ISession OpenSession()
         {
-            return sessionFactory.OpenSession();
+            return _sessionFactory.OpenSession();
         }
     }
 }

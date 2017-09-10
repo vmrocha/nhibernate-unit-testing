@@ -10,7 +10,7 @@ namespace Tests.Mappings
         [Test]
         public void TemplateProperties()
         {
-            object entityId = null;
+            object entityId;
 
             using (var session = OpenSession())
             {
@@ -30,23 +30,20 @@ namespace Tests.Mappings
 
             using (var session = OpenSession())
             {
-                using (var transaction = session.BeginTransaction())
-                {
-                    var entity = session.Get<Template>(entityId);
+                var entity = session.Get<Template>(entityId);
 
-                    Assert.NotNull(entity);
-                    Assert.AreEqual("Template Name", entity.Name);
-                    Assert.AreEqual(5, entity.Pages);
-                    Assert.AreEqual(500, entity.Width);
-                    Assert.AreEqual(600, entity.Heigth);
-                }
+                Assert.NotNull(entity);
+                Assert.AreEqual("Template Name", entity.Name);
+                Assert.AreEqual(5, entity.Pages);
+                Assert.AreEqual(500, entity.Width);
+                Assert.AreEqual(600, entity.Heigth);
             }
         }
 
         [Test]
         public void TemplateCompanyProperty()
         {
-            object entityId = null;
+            object entityId;
 
             using (var session = OpenSession())
             {
@@ -64,20 +61,17 @@ namespace Tests.Mappings
 
             using (var session = OpenSession())
             {
-                using (var transaction = session.BeginTransaction())
-                {
-                    var entity = session.Get<Template>(entityId);
+                var entity = session.Get<Template>(entityId);
 
-                    Assert.NotNull(entity);
-                    Assert.AreEqual("Company Name", entity.Company.Name);
-                }
+                Assert.NotNull(entity);
+                Assert.AreEqual("Company Name", entity.Company.Name);
             }
         }
 
         [Test]
         public void TemplateFieldsProperty()
         {
-            object entityId = null;
+            object entityId;
 
             using (var session = OpenSession())
             {
@@ -95,16 +89,13 @@ namespace Tests.Mappings
 
             using (var session = OpenSession())
             {
-                using (var transaction = session.BeginTransaction())
-                {
-                    var entity = session.Get<Template>(entityId);
+                var entity = session.Get<Template>(entityId);
 
-                    Assert.NotNull(entity);
-                    Assert.NotNull(entity.Fields);
-                    Assert.AreEqual(2, entity.Fields.Count);
-                    Assert.Contains("FieldOne", entity.Fields.Select(x => x.Name).ToList());
-                    Assert.Contains("FieldTwo", entity.Fields.Select(x => x.Name).ToList());
-                }
+                Assert.NotNull(entity);
+                Assert.NotNull(entity.Fields);
+                Assert.AreEqual(2, entity.Fields.Count);
+                Assert.Contains("FieldOne", entity.Fields.Select(x => x.Name).ToList());
+                Assert.Contains("FieldTwo", entity.Fields.Select(x => x.Name).ToList());
             }
         }
     }

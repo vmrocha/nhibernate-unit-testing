@@ -18,5 +18,11 @@ namespace Tests.Mappings
         {
             return _sessionHelper.OpenSession();
         }
+
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            _sessionHelper.Dispose();
+        }
     }
 }

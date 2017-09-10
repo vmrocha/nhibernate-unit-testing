@@ -9,7 +9,7 @@ namespace Tests.Mappings
         [Test]
         public void FieldProperties()
         {
-            object entityId = null;
+            object entityId;
 
             using (var session = OpenSession())
             {
@@ -31,16 +31,13 @@ namespace Tests.Mappings
 
             using (var session = OpenSession())
             {
-                using (var transaction = session.BeginTransaction())
-                {
-                    var entity = session.Get<Field>(entityId);
+                var entity = session.Get<Field>(entityId);
 
-                    Assert.NotNull(entity);
-                    Assert.AreEqual("FieldName", entity.Name);
-                    Assert.AreEqual(1, entity.Page);
-                    Assert.AreEqual(50, entity.Width);
-                    Assert.AreEqual(60, entity.Heigth);
-                }
+                Assert.NotNull(entity);
+                Assert.AreEqual("FieldName", entity.Name);
+                Assert.AreEqual(1, entity.Page);
+                Assert.AreEqual(50, entity.Width);
+                Assert.AreEqual(60, entity.Heigth);
             }
         }
     }

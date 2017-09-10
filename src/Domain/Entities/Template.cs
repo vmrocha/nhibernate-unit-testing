@@ -9,6 +9,7 @@ namespace Domain.Entities
 
         public Template(string name)
         {
+            // ReSharper disable once VirtualMemberCallInConstructor
             Name = name;
         }
 
