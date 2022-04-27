@@ -1,4 +1,4 @@
-﻿using NHibernate;
+using NHibernate;
 using NUnit.Framework;
 using Persistence;
 
@@ -14,7 +14,8 @@ namespace Tests.Mappings
             _sessionHelper = new InMemorySessionHelper();
         }
 
-        protected ISession OpenSession()
+    [System.Obsolete]
+    protected ISession OpenSession()
         {
             return _sessionHelper.OpenSession();
         }

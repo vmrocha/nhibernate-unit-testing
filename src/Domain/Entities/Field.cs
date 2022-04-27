@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities
+namespace Domain.Entities
 {
     public class Field : BaseEntity
     {
@@ -7,7 +7,6 @@
 
         public Field(string name)
         {
-            // ReSharper disable once VirtualMemberCallInConstructor
             Name = name;
         }
 

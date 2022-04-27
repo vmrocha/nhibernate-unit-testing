@@ -1,4 +1,3 @@
-﻿using System;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
@@ -37,6 +36,7 @@ namespace Persistence
             _connection?.Dispose();
         }
 
+        [Obsolete]
         public ISession OpenSession()
         {
             return _sessionFactory.OpenSession(GetConnection());

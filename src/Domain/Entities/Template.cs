@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-
 namespace Domain.Entities
 {
     public class Template : BaseEntity
     {
         public Template()
-        { }
+        {
+        }
 
         public Template(string name)
         {
-            // ReSharper disable once VirtualMemberCallInConstructor
             Name = name;
         }
 

@@ -1,4 +1,4 @@
-﻿using Domain.ValueTypes;
+using Domain.ValueTypes;
 
 namespace Domain.Entities
 {
@@ -9,7 +9,6 @@ namespace Domain.Entities
 
         public Company(string name)
         {
-            // ReSharper disable once VirtualMemberCallInConstructor
             Name = name;
         }
 

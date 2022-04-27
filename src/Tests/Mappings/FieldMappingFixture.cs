@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+using Domain.Entities;
 using NUnit.Framework;
 
 namespace Tests.Mappings
@@ -7,6 +7,7 @@ namespace Tests.Mappings
     public class FieldMappingFixture : BaseFixture
     {
         [Test]
+        [System.Obsolete]
         public void FieldProperties()
         {
             object entityId;

@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+using Domain.Entities;
 using NUnit.Framework;
 using System.Linq;
 
@@ -8,6 +8,7 @@ namespace Tests.Mappings
     public class TemplateMappingFixture : BaseFixture
     {
         [Test]
+        [System.Obsolete]
         public void TemplateProperties()
         {
             object entityId;
@@ -41,6 +42,7 @@ namespace Tests.Mappings
         }
 
         [Test]
+        [System.Obsolete]
         public void TemplateCompanyProperty()
         {
             object entityId;
@@ -69,6 +71,7 @@ namespace Tests.Mappings
         }
 
         [Test]
+        [System.Obsolete]
         public void TemplateFieldsProperty()
         {
             object entityId;

@@ -1,4 +1,4 @@
-﻿using NHibernate;
+using NHibernate;
 
 namespace Persistence
 {

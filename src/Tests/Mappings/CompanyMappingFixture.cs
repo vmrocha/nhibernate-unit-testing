@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+using Domain.Entities;
 using Domain.ValueTypes;
 using NUnit.Framework;
 
@@ -8,6 +8,7 @@ namespace Tests.Mappings
     public class CompanyMappingFixture : BaseFixture
     {
         [Test]
+        [System.Obsolete]
         public void CompanyProperties()
         {
             object entityId;

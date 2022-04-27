@@ -1,4 +1,4 @@
-﻿namespace Domain.ValueTypes
+namespace Domain.ValueTypes
 {
     public class Address
     {

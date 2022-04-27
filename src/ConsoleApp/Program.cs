@@ -1,7 +1,5 @@
 ﻿using Domain.Entities;
 using Persistence;
-using System;
-using System.Linq;
 
 namespace ConsoleApp
 {
@@ -9,9 +7,10 @@ namespace ConsoleApp
     {
         private static ISessionHelper _sessionHelper;
 
+        [Obsolete]
         static void Main(string[] args)
         {
-            _sessionHelper = new PostgreSqlSessionHelper();
+            _sessionHelper = new InMemorySessionHelper();
 
             object templateId;
 
